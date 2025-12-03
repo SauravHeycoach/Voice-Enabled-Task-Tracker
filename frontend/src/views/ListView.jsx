@@ -88,7 +88,9 @@ const ListView = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="text-gray-500">Loading tasks...</div>
+        <div className="px-4 py-2 rounded-full bg-white/70 text-gray-500 shadow-sm">
+          Loading your lovely tasks...
+        </div>
       </div>
     );
   }
@@ -97,10 +99,10 @@ const ListView = () => {
     <div>
       <FilterBar onFilterChange={setFilters} />
 
-      <div className="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+      <div className="mt-6 bg-white/90 backdrop-blur rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+            <thead className="bg-primary-50/70">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Title
@@ -122,11 +124,11 @@ const ListView = () => {
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-white/80 divide-y divide-gray-100">
               {tasks.length === 0 ? (
                 <tr>
                   <td colSpan="6" className="px-6 py-8 text-center text-gray-500">
-                    No tasks found. Create your first task!
+                    No tasks yet. Create your first little victory ✨
                   </td>
                 </tr>
               ) : (

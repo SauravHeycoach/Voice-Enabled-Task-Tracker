@@ -140,12 +140,17 @@ const KanbanView = () => {
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
           {columns.map((status) => (
-            <div key={status} className="bg-gray-50 rounded-lg p-4 min-h-[400px]">
+            <div
+              key={status}
+              className="bg-white/80 backdrop-blur rounded-2xl p-4 min-h-[400px] border border-gray-100 shadow-sm"
+            >
               
               <ColumnDroppable id={status}>
                 <div className="flex justify-between items-center mb-4">
-                  <h2 className="text-lg font-semibold text-gray-700">{status}</h2>
-                  <span className="bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded-full">
+                  <h2 className="text-lg font-semibold text-gray-800">
+                    {status}
+                  </h2>
+                  <span className="bg-primary-50 text-primary-700 text-xs px-2.5 py-1 rounded-full shadow-sm">
                     {tasksByStatus[status].length}
                   </span>
                 </div>

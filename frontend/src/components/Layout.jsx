@@ -22,32 +22,32 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-purple-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
+      <header className="bg-white/80 backdrop-blur border-b border-primary-100 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-8">
-              <h1 className="text-2xl font-bold text-gray-900">
+            <div className="flex items-center space-x-6">
+              <h1 className="text-2xl font-extrabold bg-gradient-to-r from-primary-600 to-purple-600 bg-clip-text text-transparent tracking-tight">
                 Voice Task Tracker
               </h1>
-              <nav className="flex space-x-4">
+              <nav className="flex space-x-2">
                 <Link
                   to="/"
-                  className={`px-3 py-2 rounded-md text-sm font-medium ${
+                  className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
                     location.pathname === '/'
-                      ? 'bg-primary-100 text-primary-700'
-                      : 'text-gray-600 hover:text-gray-900'
+                      ? 'bg-primary-100 text-primary-800 shadow-sm'
+                      : 'text-gray-600 hover:text-primary-700 hover:bg-primary-50'
                   }`}
                 >
                   Kanban Board
                 </Link>
                 <Link
                   to="/list"
-                  className={`px-3 py-2 rounded-md text-sm font-medium ${
+                  className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
                     location.pathname === '/list'
-                      ? 'bg-primary-100 text-primary-700'
-                      : 'text-gray-600 hover:text-gray-900'
+                      ? 'bg-primary-100 text-primary-800 shadow-sm'
+                      : 'text-gray-600 hover:text-primary-700 hover:bg-primary-50'
                   }`}
                 >
                   List View
@@ -60,7 +60,7 @@ const Layout = ({ children }) => {
                   setEditingTask(null);
                   setShowVoiceModal(true);
                 }}
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                className="inline-flex items-center px-4 py-2 border border-primary-200 text-sm font-medium rounded-full text-primary-700 bg-white/70 hover:bg-white shadow-sm hover:shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-400"
               >
                 <svg
                   className="w-5 h-5 mr-2"
@@ -82,7 +82,7 @@ const Layout = ({ children }) => {
                   setEditingTask(null);
                   setShowTaskModal(true);
                 }}
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full text-white bg-gradient-to-r from-primary-500 to-purple-500 hover:from-primary-600 hover:to-purple-600 shadow-sm hover:shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
               >
                 <svg
                   className="w-5 h-5 mr-2"

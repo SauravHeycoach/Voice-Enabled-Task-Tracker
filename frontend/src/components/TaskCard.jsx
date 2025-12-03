@@ -21,15 +21,15 @@ const TaskCard = ({ task, onEdit, onDelete }) => {
   const getPriorityColor = (priority) => {
     switch (priority) {
       case 'Critical':
-        return 'bg-red-100 text-red-800 border-red-200';
+        return 'bg-red-50 text-red-700 border-red-200';
       case 'High':
-        return 'bg-orange-100 text-orange-800 border-orange-200';
+        return 'bg-orange-50 text-orange-700 border-orange-200';
       case 'Medium':
-        return 'bg-yellow-100 text-yellow-800 border-yellow-200';
+        return 'bg-amber-50 text-amber-700 border-amber-200';
       case 'Low':
-        return 'bg-green-100 text-green-800 border-green-200';
+        return 'bg-emerald-50 text-emerald-700 border-emerald-200';
       default:
-        return 'bg-gray-100 text-gray-800 border-gray-200';
+        return 'bg-gray-50 text-gray-700 border-gray-200';
     }
   };
 
@@ -39,10 +39,12 @@ const TaskCard = ({ task, onEdit, onDelete }) => {
       style={style}
       {...attributes}
       {...listeners}
-      className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-3 cursor-move hover:shadow-md transition-shadow"
+      className="bg-white/90 backdrop-blur rounded-xl shadow-sm border border-gray-100 p-4 mb-3 cursor-move hover:shadow-md hover:-translate-y-0.5 transition-all"
     >
       <div className="flex justify-between items-start mb-2">
-        <h3 className="font-semibold text-gray-900 flex-1">{task.title}</h3>
+        <h3 className="font-semibold text-gray-900 flex-1 leading-snug">
+          {task.title}
+        </h3>
         <div className="flex space-x-2 ml-2">
           <button
             type="button"
