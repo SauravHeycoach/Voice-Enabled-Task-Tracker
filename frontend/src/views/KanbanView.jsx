@@ -150,7 +150,7 @@ const KanbanView = () => {
                   <h2 className="text-lg font-semibold text-gray-800">
                     {status}
                   </h2>
-                  <span className="bg-primary-50 text-primary-700 text-xs px-2.5 py-1 rounded-full shadow-sm">
+                  <span className="bg-primary-100 text-primary-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-sm border border-primary-300">
                     {tasksByStatus[status].length}
                   </span>
                 </div>

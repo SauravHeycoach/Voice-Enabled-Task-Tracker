@@ -28,7 +28,7 @@ const Layout = ({ children }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-6">
-              <h1 className="text-2xl font-extrabold bg-gradient-to-r from-primary-600 to-purple-600 bg-clip-text text-transparent tracking-tight">
+              <h1 className="text-2xl font-extrabold bg-primary-600 bg-clip-text text-transparent tracking-tight">
                 Voice Task Tracker
               </h1>
               <nav className="flex space-x-2">
