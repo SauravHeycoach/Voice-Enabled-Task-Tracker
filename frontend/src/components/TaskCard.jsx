@@ -42,7 +42,7 @@ const TaskCard = ({ task, onEdit, onDelete }) => {
       case 'Medium':
         return '📌';
       case 'Low':
-        return '💚';
+        return '⬇️';
       default:
         return '📋';
     }

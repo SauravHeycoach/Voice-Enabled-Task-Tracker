@@ -162,7 +162,7 @@ const ListView = () => {
                         {task.priority === 'Critical' && '🔥 '}
                         {task.priority === 'High' && '⚡ '}
                         {task.priority === 'Medium' && '📌 '}
-                        {task.priority === 'Low' && '💚 '}
+                        {task.priority === 'Low' && '⬇️ '}
                         {task.priority}
                       </span>
                     </td>
