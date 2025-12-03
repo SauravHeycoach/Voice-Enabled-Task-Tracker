@@ -8,7 +8,7 @@ const VoiceInputModal = ({ onClose, onSave }) => {
   const [parsedData, setParsedData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [step, setStep] = useState('record'); // 'record', 'review'
+  const [step, setStep] = useState('record'); 
   
   const recognitionRef = useRef(null);
   const finalTranscriptRef = useRef('');
