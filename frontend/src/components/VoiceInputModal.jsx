@@ -12,6 +12,8 @@ const VoiceInputModal = ({ onClose, onSave }) => {
   
   const recognitionRef = useRef(null);
   const finalTranscriptRef = useRef('');
+  const isIntentionallyStoppingRef = useRef(false);
+  const shouldRestartRef = useRef(false);
 
   useEffect(() => {
     // Check if browser supports Web Speech API
@@ -32,6 +34,7 @@ const VoiceInputModal = ({ onClose, onSave }) => {
     recognition.onstart = () => {
       setIsRecording(true);
       setError('');
+      shouldRestartRef.current = false;
     };
 
     recognition.onresult = (event) => {
@@ -41,37 +44,88 @@ const VoiceInputModal = ({ onClose, onSave }) => {
       for (let i = event.resultIndex; i < event.results.length; i++) {
         const transcript = event.results[i][0].transcript;
         if (event.results[i].isFinal) {
-          finalTranscript += transcript + ' ';
+          // Accumulate final transcripts (handles pauses gracefully)
+          finalTranscriptRef.current += transcript + ' ';
         } else {
           interimTranscript += transcript;
         }
       }
 
-      finalTranscriptRef.current = finalTranscript;
-      setTranscript(finalTranscriptRef.current + interimTranscript);
+      // Show accumulated final transcript + current interim
+      setTranscript(finalTranscriptRef.current.trim() + ' ' + interimTranscript);
     };
 
     recognition.onerror = (event) => {
       console.error('Speech recognition error:', event.error);
+      
+      // Don't stop on "no-speech" - user might be pausing, auto-restart
       if (event.error === 'no-speech') {
-        setError('No speech detected. Please try again.');
+        // Set flag to restart when recognition ends
+        if (!isIntentionallyStoppingRef.current) {
+          shouldRestartRef.current = true;
+        }
+        return;
       } else if (event.error === 'audio-capture') {
         setError('No microphone found. Please check your microphone settings.');
+        setIsRecording(false);
+        shouldRestartRef.current = false;
+      } else if (event.error === 'aborted') {
+        // User intentionally stopped or we're cleaning up
+        if (!isIntentionallyStoppingRef.current) {
+          shouldRestartRef.current = true;
+        }
+      } else if (event.error === 'network') {
+        setError('Network error. Please check your connection.');
+        setIsRecording(false);
+        shouldRestartRef.current = false;
       } else {
-        setError('Speech recognition error. Please try again.');
+        // For other errors, try to restart if we're still in recording mode
+        if (!isIntentionallyStoppingRef.current) {
+          shouldRestartRef.current = true;
+        }
       }
-      setIsRecording(false);
     };
 
     recognition.onend = () => {
-      setIsRecording(false);
+      // If we're intentionally stopping, don't restart
+      if (isIntentionallyStoppingRef.current) {
+        setIsRecording(false);
+        shouldRestartRef.current = false;
+        return;
+      }
+
+      // If we should restart (silence timeout, etc.), restart automatically
+      if (shouldRestartRef.current) {
+        try {
+          // Small delay before restart to avoid immediate restart issues
+          setTimeout(() => {
+            if (shouldRestartRef.current && recognitionRef.current) {
+              recognitionRef.current.start();
+            }
+          }, 100);
+        } catch (err) {
+          console.error('Error restarting recognition:', err);
+          // If restart fails, stop recording
+          setIsRecording(false);
+          shouldRestartRef.current = false;
+        }
+      } else {
+        setIsRecording(false);
+      }
     };
 
     recognitionRef.current = recognition;
 
     return () => {
+      // Cleanup: stop recognition and prevent auto-restart
+      isIntentionallyStoppingRef.current = true;
+      shouldRestartRef.current = false;
       if (recognitionRef.current) {
-        recognitionRef.current.stop();
+        try {
+          recognitionRef.current.stop();
+        } catch (err) {
+          // Ignore errors during cleanup
+        }
       }
     };
   }, []);
@@ -82,6 +136,8 @@ const VoiceInputModal = ({ onClose, onSave }) => {
     setError('');
     setStep('record');
     finalTranscriptRef.current = '';
+    isIntentionallyStoppingRef.current = false;
+    shouldRestartRef.current = false;
     
     if (recognitionRef.current) {
       try {
@@ -94,6 +150,10 @@ const VoiceInputModal = ({ onClose, onSave }) => {
   };
 
   const stopRecording = async () => {
+    // Mark that we're intentionally stopping
+    isIntentionallyStoppingRef.current = true;
+    shouldRestartRef.current = false;
+    
     if (recognitionRef.current) {
       recognitionRef.current.stop();
     }
