@@ -58,7 +58,7 @@ const FilterBar = ({ onFilterChange }) => {
   };
 
   return (
-    <div className="bg-white/90 backdrop-blur rounded-2xl shadow-sm border border-gray-100 p-5 transition-all hover:shadow-md">
+    <div className="bg-white/90 backdrop-blur rounded-2xl shadow-sm border border-gray-300 p-5 transition-all hover:shadow-md">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
         <div>
           <label className="block text-xs font-semibold text-gray-600 mb-2 uppercase tracking-wide">
@@ -69,16 +69,18 @@ const FilterBar = ({ onFilterChange }) => {
               Status
             </span>
           </label>
-          <select
-            value={statusFilter}
-            onChange={handleStatusChange}
-            className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white/80 text-sm font-medium text-gray-700 transition-all hover:border-primary-300 cursor-pointer shadow-sm"
-          >
-            <option value="">All Statuses</option>
-            <option value="To Do">To Do</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Done">Done</option>
-          </select>
+          <div className="select-wrapper">
+            <select
+              value={statusFilter}
+              onChange={handleStatusChange}
+              className="w-full px-4 py-2.5 border border-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white/80 text-sm font-medium text-gray-700 transition-all hover:border-primary-400 cursor-pointer shadow-sm"
+            >
+              <option value="">All Statuses</option>
+              <option value="To Do">To Do</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Done">Done</option>
+            </select>
+          </div>
         </div>
 
         <div>
@@ -90,17 +92,19 @@ const FilterBar = ({ onFilterChange }) => {
               Priority
             </span>
           </label>
-          <select
-            value={priorityFilter}
-            onChange={handlePriorityChange}
-            className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white/80 text-sm font-medium text-gray-700 transition-all hover:border-primary-300 cursor-pointer shadow-sm"
-          >
-            <option value="">All Priorities</option>
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-            <option value="Critical">Critical</option>
-          </select>
+          <div className="select-wrapper">
+            <select
+              value={priorityFilter}
+              onChange={handlePriorityChange}
+              className="w-full px-4 py-2.5 border border-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white/80 text-sm font-medium text-gray-700 transition-all hover:border-primary-400 cursor-pointer shadow-sm"
+            >
+              <option value="">All Priorities</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+              <option value="Critical">Critical</option>
+            </select>
+          </div>
         </div>
 
         {/* Search + Clear: stay in one row on md+, shrink responsively, wrap only when very small */}
@@ -123,7 +127,7 @@ const FilterBar = ({ onFilterChange }) => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search tasks..."
-                className="flex-1 min-w-0 px-4 py-2.5 border border-gray-200 rounded-l-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white/80 text-sm transition-all hover:border-primary-300 shadow-sm placeholder:text-gray-400"
+                className="flex-1 min-w-0 px-4 py-2.5 border border-gray-400 rounded-l-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white/80 text-sm transition-all hover:border-primary-400 shadow-sm placeholder:text-gray-400"
               />
               <button
                 type="submit"
@@ -135,7 +139,7 @@ const FilterBar = ({ onFilterChange }) => {
 
             <button
               onClick={clearFilters}
-              className="px-4 sm:px-5 py-2.5 border-2 border-gray-200 rounded-xl text-gray-700 hover:bg-gray-50 hover:border-gray-300 whitespace-nowrap text-sm font-semibold transition-all shadow-sm hover:shadow-md transform hover:scale-[1.02]"
+              className="px-4 sm:px-5 py-2.5 border-2 border-gray-400 rounded-xl text-gray-700 hover:bg-gray-50 hover:border-gray-500 whitespace-nowrap text-sm font-semibold transition-all shadow-sm hover:shadow-md transform hover:scale-[1.02]"
             >
               Clear
             </button>
@@ -144,7 +148,7 @@ const FilterBar = ({ onFilterChange }) => {
       </div>
 
       {(statusFilter || priorityFilter || searchQuery) && (
-        <div className="mt-5 pt-4 border-t border-gray-100">
+        <div className="mt-5 pt-4 border-t border-gray-300">
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Active Filters:</span>
             {statusFilter && (

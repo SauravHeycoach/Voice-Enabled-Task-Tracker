@@ -99,7 +99,7 @@ const ListView = () => {
     <div>
       <FilterBar onFilterChange={setFilters} />
 
-      <div className="mt-6 bg-white/90 backdrop-blur rounded-2xl shadow-sm border border-gray-100 overflow-hidden transition-all hover:shadow-md">
+      <div className="mt-6 bg-white/90 backdrop-blur rounded-2xl shadow-sm border border-gray-300 overflow-hidden transition-all hover:shadow-md">
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-100">
             <thead className="bg-gradient-to-r from-primary-50/80 to-purple-50/80">

@@ -67,7 +67,7 @@ const TaskCard = ({ task, onEdit, onDelete }) => {
       style={style}
       {...attributes}
       {...listeners}
-      className="group bg-white/95 backdrop-blur rounded-2xl shadow-sm border border-gray-200 p-3 mb-3 cursor-move hover:shadow-lg hover:-translate-y-1 hover:border-primary-200 transition-all duration-200 relative overflow-hidden"
+      className="group bg-white/95 backdrop-blur rounded-2xl shadow-sm border border-gray-400 p-3 mb-3 cursor-move hover:shadow-lg hover:-translate-y-1 hover:border-primary-400 transition-all duration-200 relative overflow-hidden"
     >
       {/* Subtle gradient accent on hover */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-50/0 to-purple-50/0 group-hover:from-primary-50/30 group-hover:to-purple-50/20 transition-all duration-200 rounded-2xl pointer-events-none" />
@@ -125,13 +125,13 @@ const TaskCard = ({ task, onEdit, onDelete }) => {
         )}
 
         {/* Footer with priority and due date */}
-        <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-          <span className={`inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full border shadow-sm ${getPriorityColor(task.priority)}`}>
+        <div className="flex items-center justify-between pt-3 border-t border-gray-300">
+          <span className={`inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full border shadow-sm ${getPriorityColor(task.priority)}`}>
             <span className="text-base">{getPriorityIcon(task.priority)}</span>
             {task.priority}
           </span>
           {task.dueDate && (
-            <span className="inline-flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-gray-50 px-3 py-1.5 rounded-full border border-gray-200">
+            <span className="inline-flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-gray-50 px-3 py-1.5 rounded-full border border-gray-400">
               <svg className="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>

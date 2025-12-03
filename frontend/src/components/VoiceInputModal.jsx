@@ -296,7 +296,7 @@ const VoiceInputModal = ({ onClose, onSave }) => {
                     type="text"
                     value={parsedData.title}
                     onChange={(e) => handleEditField('title', e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                    className="w-full px-3 py-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                   />
                 </div>
 
@@ -308,7 +308,7 @@ const VoiceInputModal = ({ onClose, onSave }) => {
                     value={parsedData.description || ''}
                     onChange={(e) => handleEditField('description', e.target.value)}
                     rows="3"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                    className="w-full px-3 py-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                   />
                 </div>
 
@@ -317,31 +317,35 @@ const VoiceInputModal = ({ onClose, onSave }) => {
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Status
                     </label>
-                    <select
-                      value={parsedData.status || 'To Do'}
-                      onChange={(e) => handleEditField('status', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
-                    >
-                      <option value="To Do">To Do</option>
-                      <option value="In Progress">In Progress</option>
-                      <option value="Done">Done</option>
-                    </select>
+                    <div className="select-wrapper">
+                      <select
+                        value={parsedData.status || 'To Do'}
+                        onChange={(e) => handleEditField('status', e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      >
+                        <option value="To Do">To Do</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Done">Done</option>
+                      </select>
+                    </div>
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Priority
                     </label>
-                    <select
-                      value={parsedData.priority || 'Medium'}
-                      onChange={(e) => handleEditField('priority', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
-                    >
-                      <option value="Low">Low</option>
-                      <option value="Medium">Medium</option>
-                      <option value="High">High</option>
-                      <option value="Critical">Critical</option>
-                    </select>
+                    <div className="select-wrapper">
+                      <select
+                        value={parsedData.priority || 'Medium'}
+                        onChange={(e) => handleEditField('priority', e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      >
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                        <option value="Critical">Critical</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
 
@@ -353,7 +357,7 @@ const VoiceInputModal = ({ onClose, onSave }) => {
                     type="datetime-local"
                     value={parsedData.dueDate ? format(new Date(parsedData.dueDate), "yyyy-MM-dd'T'HH:mm") : ''}
                     onChange={(e) => handleEditField('dueDate', e.target.value ? new Date(e.target.value).toISOString() : null)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                    className="w-full px-3 py-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                   />
                 </div>
               </div>
@@ -364,7 +368,7 @@ const VoiceInputModal = ({ onClose, onSave }) => {
                     setStep('record');
                     setParsedData(null);
                   }}
-                  className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+                  className="px-4 py-2 border border-gray-400 rounded-md text-gray-700 hover:bg-gray-50"
                 >
                   Record Again
                 </button>

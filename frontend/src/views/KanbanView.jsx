@@ -142,7 +142,7 @@ const KanbanView = () => {
           {columns.map((status) => (
             <div
               key={status}
-              className="bg-white/80 backdrop-blur rounded-2xl p-4 min-h-[400px] border border-gray-100 shadow-sm"
+              className="bg-white/80 backdrop-blur rounded-2xl p-4 min-h-[400px] border border-gray-300 shadow-sm"
             >
               
               <ColumnDroppable id={status}>
